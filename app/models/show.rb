@@ -1,14 +1,11 @@
 class Show < ActiveRecord::Base
    has_many :characters
-  has_many :shows, through: :characters
+  has_many :actors, through: :characters
+  belongs_to :network
 
-  def full_name
-    "#{self.first_name} #{self.last_name}"
-  end
-
-  def list_roles
-    self.characters.collect do |char|
-      "#{char.name} - #{char.show.name}"
+  def actors_list
+    self.actors.collect do |actor|
+      actor.full_name
     end
   end
   
